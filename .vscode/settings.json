@@ -1,0 +1,9 @@
+{
+  "workbench.sideBar.location": "left",
+  "editor.tabSize": 2,
+  "editor.fontSize": 14,
+  "window.zoomLevel": -1,
+  "files.autoSave": "afterDelay",
+  "python.linting.pep8Enabled": false,
+  "python.linting.pep8Args": ["--indent-size=2","--ignore=E226,E302,W011,E41"]
+}
