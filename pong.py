@@ -2,6 +2,7 @@
 import numpy as np
 import cPickle as pickle
 import gym
+from pathlib import Path
 
 # hyperparameters
 H = 200 # number of hidden layer neurons
@@ -14,7 +15,8 @@ render = False
 
 # model initialization
 D = 80 * 80 # input dimensionality: 80x80 grid
-if resume:
+model_file = Path('model.p')
+if resume and model_file.is_file():
   model = pickle.load(open('model.p', 'rb'))
 else:
   model = {}
