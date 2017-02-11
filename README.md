@@ -17,10 +17,6 @@ $source ~/tf/bin/activate
 ```
 
 ## Test
-```bash
-(tf)$python test.py
-```
-
 test.py
 ```python
 import gym
@@ -30,6 +26,7 @@ env.render()
 ```
 
 ```bash
+(tf)$python test.py
 (tf)$deactivate
 $
 ```
