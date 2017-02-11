@@ -19,7 +19,12 @@ $source ~/tf/bin/activate
 ## Test
 test.py
 ```python
+import tensorflow as tf
 import gym
+a=tf.constant(1)
+b=tf.constant(2)
+sess=tf.Session()
+print(sess.run(a+b))
 env = gym.make('Pong-v0')
 env.reset()
 env.render()
@@ -28,7 +33,7 @@ raw_input("Press Enter to exit...")
 
 ```bash
 (tf)$python test.py
-A pong video game should show up on the screen 
+# screen will print a "3" and a pong video game should show up on the screen 
 (tf)$deactivate
 $
 ```
