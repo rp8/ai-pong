@@ -23,10 +23,12 @@ import gym
 env = gym.make('Pong-v0')
 env.reset()
 env.render()
+raw_input("Press Enter to exit...")
 ```
 
 ```bash
 (tf)$python test.py
+A pong video game should show up on the screen 
 (tf)$deactivate
 $
 ```
