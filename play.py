@@ -1,8 +1,10 @@
 """ Trains an agent with (stochastic) Policy Gradients on Pong. Uses OpenAI Gym. """
-import numpy as np
 import cPickle as pickle
+import numpy as np
 import gym
 import tensorflow as tf
+
+sess = tf.Session()
 
 # model initialization
 D = 80*80 # dimensionality 
@@ -15,7 +17,7 @@ def prepro(I):
   #I = tf.slice(I,[35,0,0],[160,160,3]).eval()
   #I = tf.image.resize_nearest_neighbor()
   I = I[35:195] # crop
-  I = I[::2,::2,0] # downsample by factor of 2
+  I = I[::2, ::2, 0] # downsample by factor of 2
   I[I == 144] = 0 # erase background (background type 1)
   I[I == 109] = 0 # erase background (background type 2)
   I[I != 0] = 1 # everything else (paddles, ball) just set to 1
@@ -33,7 +35,7 @@ def policy_forward(x):
 
 env = gym.make("Pong-v0")
 if recording:
-  env = wrappers.Monitor(env, './data', force=True)
+  env = gym.wrappers.Monitor(env, './data', force=True)
 
 obs = env.reset()
 prev_x = None # used in computing the difference frame
