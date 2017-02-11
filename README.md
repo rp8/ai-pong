@@ -13,7 +13,9 @@ $source ~/tf/bin/activate
 (tf)$pip install gym
 (tf)$pip install gym[atari]
 (tf)$pip install pathlib
-(tf)$```
+(tf)$
+```
+
 ## Test
 ```bash
 (tf)$python test.py
