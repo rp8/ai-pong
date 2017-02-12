@@ -37,3 +37,13 @@ raw_input("Press Enter to exit...")
 (tf)$deactivate
 $
 ```
+
+## Watch Pong Game
+```bash
+(tf)$python play.py
+```
+
+## Train the Network
+```bash
+(tf)$python pong.py
+```
