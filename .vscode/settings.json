@@ -6,7 +6,8 @@
   "files.autoSave": "afterDelay",
   "python.pythonPath": "~/tf/bin/python",
   "python.linting.pylintArgs": [
-        "--extension-pkg-whitelist=numpy"
+        "--extension-pkg-whitelist=numpy",
+        "--ignore=C0325,E226,E302,W011,E41,R0914,R0915"
   ],
   "python.linting.pep8Enabled": true,
   "python.linting.pep8Args": ["--indent-size=2","--ignore=C0325,E226,E302,W011,E41,R0914,R0915"]

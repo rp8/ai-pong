@@ -6,7 +6,7 @@
       "type": "python",
       "request": "launch",
       "stopOnEntry": true,
-      "pythonPath": "/usr/bin/python2.7",
+      "pythonPath": "/home/rp8/tf/bin/python",
       "program": "${file}",
       "cwd": "${workspaceRoot}",
       "debugOptions": [
