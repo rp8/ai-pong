@@ -31,7 +31,8 @@ def preprocess(sess, frame):
   with sess.as_default():
     frame = tf.slice(frame, [35, 0, 0], [160, 160, 1])
     frame = tf.image.resize_nearest_neighbor([frame], [80, 80])
-    I = sess.run(frame[0, :, :, 0])
+    frame = frame[0, :, :,  0]
+    I = sess.run(frame)
     I[I == 144] = 0 # erase background (background type 1)
     I[I == 109] = 0 # erase background (background type 2)
     I[I != 0] = 1 # everything else (paddles, ball) just set to 1

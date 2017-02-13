@@ -72,7 +72,7 @@ discounted_epr /= tf.sqrt(variance + 1e-6)
 
 # tf optimizer op
 aprob = policy_forward(X)
-loss = tf.nn.l2_loss(Y-aprob)
+loss = tf.nn.l2_loss(Y - aprob)
 optimizer = tf.train.RMSPropOptimizer(learning_rate, decay=decay)
 grads = optimizer.compute_gradients(loss, var_list=tf.trainable_variables(), grad_loss=discounted_epr)
 train_op = optimizer.apply_gradients(grads)
@@ -82,7 +82,7 @@ sess = tf.Session()
 tf.global_variables_initializer().run(session=sess)
 
 # try load saved model
-saver = tf.train.Saver(tf.global_variables())
+saver = tf.train.Saver(tf.global_variables(), max_to_keep=3)
 load_was_success = True  # yes, I'm being optimistic
 try:
   save_dir = '/'.join(save_path.split('/')[:-1])
@@ -94,7 +94,7 @@ except:
   load_was_success = False
 else:
   print("loaded model: {}".format(load_path))
-  saver = tf.train.Saver(tf.global_variables())
+  saver = tf.train.Saver(tf.global_variables(), max_to_keep=3)
   episode_number = int(load_path.split('-')[-1])
 
 start = timeit.default_timer()
@@ -117,7 +117,7 @@ while True:
   label[action] = 1
 
   # step the environment and get new measurements
-  obs, reward, done, info = env.step(action+1)
+  obs, reward, done, info = env.step(action + 1)
   reward_sum += reward
 
   # record game history
@@ -126,7 +126,6 @@ while True:
   rs.append(reward)
 
   if done:
-
     # update running reward
     running_reward = reward_sum if running_reward is None else running_reward * 0.99 + reward_sum * 0.01
 
@@ -142,9 +141,9 @@ while True:
     episode_number += 1  # the Next Episode
     obs = env.reset()  # reset env
     reward_sum = 0
-    if episode_number % 100 == 0:
+    if episode_number % batch_size == 0:
       saver.save(sess, save_path, global_step=episode_number)
       print("SAVED MODEL #{}".format(episode_number))
       stop = timeit.default_timer()
-      print("average %f seconds per batch of %d episodes" % (stop - start, batch_size))
+      print("{} seconds per batch of {} episodes".format(stop - start, batch_size))
       start = timeit.default_timer()

@@ -102,7 +102,7 @@ def train():
     dlogp_s.append(outputs - aprob)
 
     # step the environment and get new measurements
-    observation, reward, done = env.step(action)
+    observation, reward, done, info = env.step(action)
     reward_sum += reward
 
     # record reward (has to be done after we call step() to get reward for previous action)
@@ -135,6 +135,9 @@ def train():
           rmsprop_cache[key] = DECAY_RATE * rmsprop_cache[key] + (1 - DECAY_RATE) * grad**2
           model[key] += LEARNING_RATE * grad / (np.sqrt(rmsprop_cache[key]) + 1e-5)
           grad_buffer[key] = np.zeros_like(val)  # reset batch gradient buffer
+      #for key, val in model.iteritems():
+      #  rmsprop_cache[key] = DECAY_RATE * rmsprop_cache[key] + (1 - DECAY_RATE) * grad[key]**2
+      #  model[key] += LEARNING_RATE * grad[key] / (np.sqrt(rmsprop_cache[key]) + 1e-5)
 
       # boring book-keeping
       episode_number += 1
@@ -145,10 +148,10 @@ def train():
 
       print('episode %i reward total = %f, running mean = %f' %
             (episode_number, reward_sum, running_reward))
-      if episode_number % 100 == 0:
+      if episode_number % 50 == 0:
         pickle.dump(model, open('model.p', 'wb'))
         stop = timeit.default_timer()
-        print("average %f seconds per batch of %d episodes" % (stop - start, BATCH_SIZE))
+        print("%f seconds per batch of %d episodes" % (stop - start, BATCH_SIZE))
         start = timeit.default_timer()
       reward_sum = 0
       observation = env.reset()  # reset env
