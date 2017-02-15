@@ -68,7 +68,7 @@ EPR = tf.placeholder(dtype=tf.float32, shape=[None, 1], name="EPR")
 discounted_epr = discount_rewards(EPR)
 mean, variance = tf.nn.moments(discounted_epr, [0], shift=None, name="reward_moments")
 discounted_epr -= mean
-discounted_epr /= tf.sqrt(variance + 1e-6)
+discounted_epr /= tf.sqrt(variance + 1e-4)
 
 # tf optimizer op
 aprob = policy_forward(X)

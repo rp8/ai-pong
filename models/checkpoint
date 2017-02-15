@@ -1,4 +1,4 @@
-model_checkpoint_path: "pong.ckpt-1720"
-all_model_checkpoint_paths: "pong.ckpt-1700"
-all_model_checkpoint_paths: "pong.ckpt-1710"
-all_model_checkpoint_paths: "pong.ckpt-1720"
+model_checkpoint_path: "pong.ckpt-3950"
+all_model_checkpoint_paths: "pong.ckpt-3930"
+all_model_checkpoint_paths: "pong.ckpt-3940"
+all_model_checkpoint_paths: "pong.ckpt-3950"
